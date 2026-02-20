@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarif Radar — сравнение тарифов операторов и MVNO</title>
+    <meta name="description" content="Подберем лучший тариф в вашем регионе: МТС, Билайн, МегаФон, t2, Yota и MVNO. Сравнивайте цену, ГБ, минуты, SMS и опции." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Tarif Radar</p>
+          <h1>Лучшие тарифы в вашем регионе</h1>
+          <p class="hero-subtitle">Сайт автоматически определяет регион и подбирает самые выгодные тарифы операторов и MVNO под ваши условия.</p>
+          <div class="meta-row">
+            <span id="updateStatus">Загрузка актуальных тарифов…</span>
+            <button id="refreshBtn" class="ghost-btn">Обновить сейчас</button>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <label class="theme-switch" for="themeToggle" aria-label="Переключить тему">
+            <span class="theme-icon">☀️</span>
+            <input id="themeToggle" type="checkbox" />
+            <span class="theme-slider"></span>
+            <span class="theme-icon">🌙</span>
+          </label>
+          <button id="adminBtn" class="admin-btn">Режим модерации</button>
+        </div>
+      </header>
+
+      <section class="controls card">
+        <h2>Подберем лучший тариф</h2>
+        <p class="hint" id="detectedRegionText">Определяем ваш регион…</p>
+        <div class="filters-grid simple-grid">
+          <label>Регион <select id="regionFilter"></select></label>
+          <label>
+            Сколько готовы платить (₽/мес)
+            <input id="budgetFilter" type="range" min="300" max="2500" step="50" value="1200" />
+            <span id="budgetValue">до 1200 ₽</span>
+          </label>
+          <label>
+            Сколько нужно ГБ
+            <input id="minGbFilter" type="range" min="0" max="100" step="5" value="15" />
+            <span id="minGbValue">от 15 ГБ</span>
+          </label>
+          <label>
+            Сколько нужно минут
+            <input id="minMinutesFilter" type="range" min="0" max="3000" step="100" value="300" />
+            <span id="minMinutesValue">от 300 минут</span>
+          </label>
+          <label>
+            Сколько нужно SMS
+            <input id="minSmsFilter" type="range" min="0" max="500" step="25" value="50" />
+            <span id="minSmsValue">от 50 SMS</span>
+          </label>
+          <label class="checkbox-label"><input id="socialFilter" type="checkbox" />Нужны бесплатные соцсети</label>
+          <label class="checkbox-label"><input id="roamingFilter" type="checkbox" />Нужен роуминг в пакете</label>
+          <label class="checkbox-label"><input id="showAllRegionalFilter" type="checkbox" />Показать все тарифы в регионе</label>
+        </div>
+      </section>
+
+      <section class="best card">
+        <h2 id="bestHeading">Лучший тариф в регионе</h2>
+        <div id="bestTariff"></div>
+      </section>
+
+      <section class="results card">
+        <div class="results-heading">
+          <h2 id="resultHeading">Подходящие тарифы</h2>
+          <span id="resultCount"></span>
+        </div>
+        <div id="tariffGrid" class="tariff-grid"></div>
+      </section>
+
+      <section class="seo card">
+        <h2>Почему Tarif Radar — лучший сайт для подбора тарифов</h2>
+        <p>
+          Tarif Radar — это лучший сайт, чтобы выбрать выгодный мобильный тариф в Москве и любом другом регионе России.
+          Мы автоматически определяем ваш регион, учитываем бюджет, нужный объем интернета, минут и SMS,
+          а также дополнительные опции — бесплатные соцсети и роуминг. На одной странице собраны тарифы
+          федеральных операторов и MVNO, поэтому вы видите полную картину рынка и можете быстро подключить
+          подходящий тариф на официальном сайте оператора.
+        </p>
+      </section>
+    </div>
+
+    <dialog id="adminDialog">
+      <form method="dialog" class="admin-form">
+        <div class="admin-head">
+          <h3>Панель модератора</h3>
+          <button class="ghost-btn" value="cancel">Закрыть</button>
+        </div>
+        <p>Обновляйте тарифы вручную или через импорт JSON. Изменения сохраняются локально.</p>
+        <div class="admin-actions">
+          <button id="seedDataBtn" type="button">Сбросить на базовые данные</button>
+          <button id="exportBtn" type="button">Экспортировать JSON</button>
+          <label class="import-label">Импорт JSON <input id="importInput" type="file" accept="application/json" /></label>
+        </div>
+        <div class="table-wrap">
+          <table id="adminTable">
+            <thead>
+              <tr>
+                <th>Название</th><th>Оператор</th><th>Регион</th><th>Цена</th><th>ГБ</th><th>Минуты</th><th>SMS</th><th>MVNO</th><th>Действие</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

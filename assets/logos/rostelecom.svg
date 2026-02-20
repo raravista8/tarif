@@ -1,0 +1,5 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'>
+  <linearGradient id='r' x1='0' x2='1'> <stop offset='0' stop-color='#5f2fff'/><stop offset='1' stop-color='#ff7a00'/> </linearGradient>
+  <rect width='64' height='64' rx='16' fill='url(#r)'/>
+  <text x='32' y='39' text-anchor='middle' font-size='20' font-family='Inter, Arial' fill='white' font-weight='700'>R</text>
+</svg>

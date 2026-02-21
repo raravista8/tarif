@@ -1,0 +1,27 @@
+# Render Configuration for Тарифы.онлайн
+# Static Site deployment configuration
+
+services:
+  # Static Site - Frontend (React + Vite)
+  - type: static
+    name: tarify-online
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      # SPA routing - all routes serve index.html
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache, no-store, must-revalidate
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"

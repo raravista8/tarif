@@ -1,0 +1,111 @@
+import type { Operator } from '@/types';
+
+export const operators: Operator[] = [
+  {
+    id: 'megafon',
+    name: 'МегаФон',
+    fullName: 'ПАО «МегаФон»',
+    type: 'mno',
+    color: '#00B956',
+    logo: '/operators/megafon.svg',
+    website: 'https://megafon.ru',
+    rating: 4.5,
+    coverageScore: 95,
+  },
+  {
+    id: 'mts',
+    name: 'МТС',
+    fullName: 'ПАО «МТС»',
+    type: 'mno',
+    color: '#E30611',
+    logo: '/operators/mts.svg',
+    website: 'https://mts.ru',
+    rating: 4.6,
+    coverageScore: 96,
+  },
+  {
+    id: 'beeline',
+    name: 'Билайн',
+    fullName: 'ПАО «ВымпелКом»',
+    type: 'mno',
+    color: '#F8A51B',
+    logo: '/operators/beeline.svg',
+    website: 'https://beeline.ru',
+    rating: 4.3,
+    coverageScore: 93,
+  },
+  {
+    id: 'tele2',
+    name: 'Т2',
+    fullName: 'ООО «Т2 Мобайл»',
+    type: 'mno',
+    color: '#1F1F1F',
+    logo: '/operators/tele2.svg',
+    website: 'https://t2.ru',
+    rating: 4.4,
+    coverageScore: 90,
+  },
+  {
+    id: 'yota',
+    name: 'Yota',
+    fullName: 'ООО «Скартел»',
+    type: 'mvno',
+    color: '#00CFFF',
+    logo: '/operators/yota.svg',
+    website: 'https://yota.ru',
+    rating: 4.2,
+    coverageScore: 88,
+  },
+  {
+    id: 'tinkoff',
+    name: 'Т-Мобайл',
+    fullName: 'АО «Т-Банк»',
+    type: 'mvno',
+    color: '#FFDD2D',
+    logo: '/operators/tmobile.svg',
+    website: 'https://tinkoff.ru/mobile-operator',
+    rating: 4.5,
+    coverageScore: 90,
+  },
+  {
+    id: 'sbermobile',
+    name: 'СберМобайл',
+    fullName: 'ООО «СберМобайл»',
+    type: 'mvno',
+    color: '#21A038',
+    logo: '/operators/sbermobile.svg',
+    website: 'https://sbermobile.ru',
+    rating: 4.1,
+    coverageScore: 90,
+  },
+  {
+    id: 'gpb',
+    name: 'ГПБ Мобайл',
+    fullName: 'ПАО «Газпромбанк»',
+    type: 'mvno',
+    color: '#0047BB',
+    logo: '/operators/gpb.svg',
+    website: 'https://gpbmobile.ru',
+    rating: 4.0,
+    coverageScore: 90,
+  },
+  {
+    id: 'vtb-mobile',
+    name: 'ВТБ Мобайл',
+    fullName: 'ПАО «ВТБ»',
+    type: 'mvno',
+    color: '#002F87',
+    logo: '/operators/vtb.svg',
+    website: 'https://vtbmobile.ru',
+    rating: 4.0,
+    coverageScore: 90,
+  },
+];
+
+export const getOperatorById = (id: string): Operator | undefined => {
+  return operators.find(op => op.id === id);
+};
+
+export const getOperatorsByType = (type: Operator['type']): Operator[] => {
+  return operators.filter(op => op.type === type);
+};
